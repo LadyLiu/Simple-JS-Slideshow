@@ -33,11 +33,12 @@ var controller = {
     timerID: null,
     //If at first image, returns url of previous image.
     getPrevImage: function() {
-        if(model.imageNum === 0) {
-            var newImage = model.getImageItemLocation(model.imageArray[model.totalImages-1]);
-        } else {
+        if(model.imageNum != 0) {
             model.imageNum = (model.imageNum - 1) % model.totalImages;
             var newImage = model.getImageItemLocation(model.imageArray[model.imageNum]);
+        } else if (model.imageNum === 0) {
+            model.imageNum = model.totalImages-1;
+            var newImage = model.getImageItemLocation(model.imageArray[model.totalImages-1]);
         }
         return newImage;
     },
